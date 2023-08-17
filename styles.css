@@ -59,6 +59,9 @@ main{
     border-radius: 10%;
     margin: 12px;
     border: 1px solid;
+    text-align: right;
+    padding: 0.5em;
+    font-size: 2rem;
 }
 body .footer{
     display:flex;
@@ -73,4 +76,8 @@ body .footer{
 }
 .footer a{
     color:black;
+}
+.footer i:hover{
+    transition: transform .7s ease-in-out;
+    transform: rotate(360deg) scale(1.1);
 }
