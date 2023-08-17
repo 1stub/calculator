@@ -14,11 +14,25 @@ main{
     width: 80px;
     height: 80px;
 }
+#delete{
+    width:45%;
+    grid-area: header;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+#clear{
+    width:90%;
+    grid-area: header;
+    grid-column-start: 3;
+}
+
 .buttons{
     width: 100%;
     display: grid;
-    grid-template-columns: 100px;
-    grid-template-rows: 100px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: 
+    "header header header header";
+
 }
 .display{
     width: 100%;
