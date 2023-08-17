@@ -1,6 +1,6 @@
 *{
     font-family: Helvetica;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 body{
@@ -29,7 +29,7 @@ main{
     border-radius: 10%;
     background-color:rgb(250, 238, 240);
 }
-#delete{
+#dlte{
     width:95%;
     grid-area: a;
     background-color: rgb(136, 136, 255);
