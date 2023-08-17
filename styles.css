@@ -1,3 +1,6 @@
+html,body{
+    font-family: Georgia,Cambria,"Times New Roman",Times,serif;
+}
 main{
     display: flex;
     justify-content: center;
@@ -11,19 +14,19 @@ main{
     margin-top: 100px;
 }
 .buttons button{
+    font-weight: 600;
+    font-size: 16px;
     width: 80px;
     height: 80px;
 }
 #delete{
-    width:45%;
-    grid-area: header;
-    grid-column-start: 1;
-    grid-row-start: 1;
+    width:95%;
+    grid-area: a;
+
 }
 #clear{
-    width:90%;
-    grid-area: header;
-    grid-column-start: 3;
+    width:95%;
+    grid-area: b;
 }
 
 .buttons{
@@ -31,8 +34,9 @@ main{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-areas: 
-    "header header header header";
-
+    "a a b b";
+    gap: 10px;
+    justify-items: center;
 }
 .display{
     width: 100%;
