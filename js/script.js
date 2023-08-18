@@ -4,6 +4,7 @@ const arithmetic = document.querySelector('.arithmetic');
 let operator;
 
 function reply_click(clicked_id) {
+    let decimalCount = 0;
     const currentButton = document.getElementById(clicked_id);
     if (currentButton === clear) {
         total.textContent = clear.value;
@@ -16,6 +17,12 @@ function reply_click(clicked_id) {
     }
     if (currentButton.classList.contains("arithmetic")) {
         operator = currentButton.value;
+        var operatorCheck = math.some(operand => total.textContent.includes(operand));
+        if(operatorCheck) {calculate(operator)};
+    }
+    if(currentButton === decimal){
+        if(decimalCount > 0) return decimalCount;
+        decimalCount++;
     }
     if (currentButton === enter) {
         calculate(operator);
@@ -24,10 +31,20 @@ function reply_click(clicked_id) {
 }
 
 function calculate(operator) {
-    let equation = total.textContent.split(operator);
+    let newArr = Array.from(total.textContent);
+    let firstOperator;
+    for(let i=0;i<newArr.length;i++){
+        for(let x=0;x<math.length;x++){
+            let a = math[x];
+            if(newArr.includes(a)){
+                firstOperator = a;
+            }
+        }
+    }
+    let equation = total.textContent.split(firstOperator);
     let num1 = parseFloat(equation[0]);
     let num2 = parseFloat(equation[1]);
-    let result = mathObj[operator](num1, num2);
+    let result = mathObj[firstOperator](num1, num2);
     total.textContent = result;
     return result;
 }
@@ -47,3 +64,5 @@ let mathObj = {
     '/': function (x, y) { return x / y },
     '*': function (x, y) { return x * y },
 };
+
+let math = ['+', '-', '*', '/'];
