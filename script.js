@@ -76,7 +76,7 @@ function calculate(operator) {
     total.textContent = result;
     return result;
 }
-function splitNums(){
+/*function splitNums(){
     let newArr = Array.from(total.textContent);
     let firstOperator;
     for(let i=0;i<newArr.length;i++){
@@ -91,7 +91,7 @@ function splitNums(){
     let num1 = parseFloat(equation[0]);
     let num2 = parseFloat(equation[1]);
     return num1, num2;
-} //broken
+}*/ //broken
 
 function roundResult(num){
     return Math.round(num * 1000)/1000;
