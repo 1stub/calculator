@@ -2,6 +2,8 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.15rem;
     font-weight: 600;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
 }
 body{
     height: 100vh;
@@ -39,16 +41,36 @@ main{
     grid-area: b;
     background-color: rgb(255, 114, 114);
 }
-
+#zero{
+    width:95%;
+    grid-area: e;
+}
 .buttons{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-areas: 
-    "a a b b";
+    "a b c d" 
+    "x x x x" 
+    "x x x x" 
+    "x x x x" 
+    "e e f g";
     justify-items: center;
     margin-bottom: 12px;
     gap:5px;
+}
+#decimal{
+    grid-area: f;
+}
+.buttons .arithmetic,
+#enter{
+    background-color: rgb(255, 201, 101);
+}
+#enter{
+    grid-area: g;
+}
+#percentage{
+    background-color: rgb(180, 180, 180);
 }
 .buttons button:hover{
     transform:scale(1.05);
