@@ -23,8 +23,7 @@ function reply_click(clicked_id) {
         if(operatorCheck) {calculate(operator)};
     }
     if(currentButton === decimal){
-        if(decimalCount > 0) return decimalCount;
-        decimalCount++;
+        if(total.textContent.includes('.')) return total.textContent.replace('.', '')
     }
     if (currentButton === enter) {
         calculate(operator);
@@ -35,7 +34,7 @@ function reply_click(clicked_id) {
     if(previousButton === enter){
         total.textContent = clicked_id.value;
     }
-    if(currentButton.value !== '%'){
+    if(currentButton.value !== '%' ){
         printDisplay(currentButton.value);
     }
     previousButton = document.getElementById(clicked_id);
