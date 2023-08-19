@@ -2,6 +2,7 @@ const total = document.querySelector('.display');
 const buttons = document.querySelector('.buttons');
 const arithmetic = document.querySelector('.arithmetic');
 let operator;
+let previousButton;
 
 function reply_click(clicked_id) {
     let decimalCount = 0;
@@ -27,7 +28,11 @@ function reply_click(clicked_id) {
     if (currentButton === enter) {
         calculate(operator);
     }
+    if(previousButton === enter){
+        total.textContent = clicked_id.value;
+    }
     printDisplay(currentButton.value);
+    previousButton = document.getElementById(clicked_id);
 }
 
 function calculate(operator) {
