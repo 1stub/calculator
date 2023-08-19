@@ -20,7 +20,7 @@ function reply_click(clicked_id) {
     if (currentButton === dlte) {
         let result = total.textContent;
         if (result.length <= 1) return total.textContent = "0";
-        result = result.substring(1);
+        result = result.substring(0,result.length - 1);
         total.textContent = result;
     }
     if (currentButton.classList.contains("arithmetic")) {
@@ -60,7 +60,6 @@ function reply_click(clicked_id) {
 function calculate(operator) {
     let newArr = Array.from(total.textContent);
     let firstOperator;
-    let result;
     for(let i=0;i<newArr.length;i++){
         for(let x=0;x<math.length;x++){
             let a = math[x];
@@ -73,8 +72,29 @@ function calculate(operator) {
     let num1 = parseFloat(equation[0]);
     let num2 = parseFloat(equation[1]);
     result = mathObj[firstOperator](num1, num2);
+    result = roundResult(result);
     total.textContent = result;
     return result;
+}
+function splitNums(){
+    let newArr = Array.from(total.textContent);
+    let firstOperator;
+    for(let i=0;i<newArr.length;i++){
+        for(let x=0;x<math.length;x++){
+            let a = math[x];
+            if(newArr.includes(a)){
+                firstOperator = a;
+            }
+        }
+    }
+    let equation = total.textContent.split(firstOperator);
+    let num1 = parseFloat(equation[0]);
+    let num2 = parseFloat(equation[1]);
+    return num1, num2;
+} //broken
+
+function roundResult(num){
+    return Math.round(num * 1000)/1000;
 }
 
 function printDisplay(value) {
