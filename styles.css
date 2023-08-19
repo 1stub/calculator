@@ -30,6 +30,7 @@ main{
     border: 2px solid;
     border-radius: 10%;
     background-color:rgb(250, 238, 240);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 #dlte{
     width:95%;

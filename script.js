@@ -32,7 +32,16 @@ function reply_click(clicked_id) {
         total.textContent = total.textContent / 100;
     }
     if(previousButton === enter){
-        total.textContent = clicked_id.value;
+        if(currentButton.classList.contains("arithmetic")){
+            total.textContent = total.textContent;
+        }
+        else if(currentButton === percentage){
+            total.textContent = total.textContent / 100;
+
+        }
+        else{
+            total.textContent = clicked_id.value;
+        }
     }
     if(currentButton.value !== '%' ){
         printDisplay(currentButton.value);
