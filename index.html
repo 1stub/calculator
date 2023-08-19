@@ -11,7 +11,12 @@
 <body>
     <main class="main">
         <div class="calculator-container">
-            <div class="display">0</div>
+            <div class="display">
+                <div class="second-display">
+                    <span id="expression"></span>
+                </div>
+                <span class="main-display"></span>
+            </div>
             <div class="buttons">
                 <button id="clear" value ="0" onClick="reply_click(this.id)">CLEAR</button>
                 <button id="dlte" onClick="reply_click(this.id)">DELETE</button>

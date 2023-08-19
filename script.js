@@ -1,15 +1,21 @@
-const total = document.querySelector('.display');
+const total = document.querySelector('.main-display');
 const buttons = document.querySelector('.buttons');
 const arithmetic = document.querySelector('.arithmetic');
 const percentage = document.querySelector('#percentage');
+const secondDisp = document.querySelector('#expression');
 let operator;
 let previousButton;
+let previousValue;
+
+window.onload = function () {
+    total.textContent = 0;
+}
 
 function reply_click(clicked_id) {
-    let decimalCount = 0;
     const currentButton = document.getElementById(clicked_id);
     if (currentButton === clear) {
-        total.textContent = clear.value;
+        total.textContent = '0';
+        return total.textContent;
     }
     if (currentButton === dlte) {
         let result = total.textContent;
@@ -26,7 +32,9 @@ function reply_click(clicked_id) {
         if(total.textContent.includes('.')) return total.textContent.replace('.', '')
     }
     if (currentButton === enter) {
+        previousValue = total.textContent;
         calculate(operator);
+        secondDisp.textContent = previousValue;
     }
     if(currentButton === percentage){
         total.textContent = total.textContent / 100;
@@ -70,10 +78,9 @@ function calculate(operator) {
 }
 
 function printDisplay(value) {
-    if (total.textContent === "0") {
+    if(total.textContent === '0'){
         total.textContent = value;
-    } 
-    else{
+    }else{
         total.textContent += value;
     }
 }

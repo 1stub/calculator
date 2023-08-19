@@ -86,6 +86,22 @@ main{
     padding: 0.5em;
     font-size: 2rem;
 }
+.second-display{
+    letter-spacing: 0.025em;
+    color: #909090;
+    font-weight: lighter;
+    right: 0;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: right;
+    width: 100%;
+}
+.main-display{
+    font-size: 2rem;
+}
+
 body .footer{
     display:flex;
     text-align:center;
