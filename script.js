@@ -16,6 +16,7 @@ window.onload = function () {
 function reply_click(clicked_id) {
     const currentButton = document.getElementById(clicked_id);
     if (currentButton === clear) {
+        secondDisp.textContent = '';
         total.textContent = '0';
         return total.textContent;
     }
