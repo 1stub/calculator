@@ -6,6 +6,8 @@ const secondDisp = document.querySelector('#expression');
 let operator;
 let previousButton;
 let previousValue;
+let num1Count;
+let num2Count;
 
 window.onload = function () {
     total.textContent = 0;
@@ -28,9 +30,6 @@ function reply_click(clicked_id) {
         var operatorCheck = math.some(operand => total.textContent.includes(operand));
         if(operatorCheck) {calculate(operator)};
     }
-    if(currentButton === decimal){
-        if(total.textContent.includes('.')) return total.textContent.replace('.', '')
-    }
     if (currentButton === enter) {
         previousValue = total.textContent;
         calculate(operator);
@@ -38,6 +37,31 @@ function reply_click(clicked_id) {
     }
     if(currentButton === percentage){
         total.textContent = total.textContent / 100;
+    }
+    if (currentButton === decimal) {
+        const currentDisplayValue = total.textContent;
+
+        // Check if there's an operator in the display value
+        if (currentDisplayValue.includes(operator)) {
+            const currentValueArray = currentDisplayValue.split(operator);
+
+            if (currentValueArray.length === 2) {
+                const firstNumber = currentValueArray[0];
+                const secondNumber = currentValueArray[1];
+
+                if (secondNumber.includes(".")) {
+                    return; // Prevent adding decimal point
+                }
+            }
+        } else {
+            // If there's no operator, check the whole value for decimal
+            if (currentDisplayValue.includes(".")) {
+                return; // Prevent adding decimal point
+            }
+        }
+
+        total.textContent += ".";
+        return;
     }
     if(previousButton === enter){
         if(currentButton.classList.contains("arithmetic")){
@@ -51,7 +75,7 @@ function reply_click(clicked_id) {
             total.textContent = clicked_id.value;
         }
     }
-    if(currentButton.value !== '%' ){
+    if(currentButton.value !== '%'){
         printDisplay(currentButton.value);
     }
     previousButton = document.getElementById(clicked_id);
@@ -76,26 +100,33 @@ function calculate(operator) {
     total.textContent = result;
     return result;
 }
-/*function splitNums(){
-    let newArr = Array.from(total.textContent);
-    let firstOperator;
-    for(let i=0;i<newArr.length;i++){
-        for(let x=0;x<math.length;x++){
-            let a = math[x];
-            if(newArr.includes(a)){
-                firstOperator = a;
-            }
-        }
-    }
-    let equation = total.textContent.split(firstOperator);
-    let num1 = parseFloat(equation[0]);
-    let num2 = parseFloat(equation[1]);
-    return num1, num2;
-}*/ //broken
-
 function roundResult(num){
     return Math.round(num * 1000)/1000;
 }
+
+function splitAndCheck(inputString) {
+    // Use regular expression to capture numbers and operator
+    const regex = /(-?\d+\.\d+)\s*([\+\-\*\/])\s*(-?\d+\.\d+)/;
+    const match = inputString.match(regex);
+  
+    if (match) {
+      const firstNumber = match[1];
+      const operator = match[2];
+      const secondNumber = match[3];
+  
+      // Check for more than one decimal in the numbers
+      const decimalCountFirst = (firstNumber.match(/\./g) || []).length;
+      const decimalCountSecond = (secondNumber.match(/\./g) || []).length;
+  
+      if (decimalCountFirst > 1 && decimalCountSecond > 1) {
+        return `${firstNumber} ${operator} ${secondNumber}`;
+      } else {
+        return "Numbers do not meet the criteria.";
+      }
+    } else {
+      return "Invalid input format.";
+    }
+  }
 
 function printDisplay(value) {
     if(total.textContent === '0'){
